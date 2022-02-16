@@ -88,12 +88,15 @@ function parse(str) {
     }
     case 'prefer':
     case 'require':
-    case 'verify-ca':
-    case 'verify-full': {
-      break
-    }
     case 'no-verify': {
       config.ssl.rejectUnauthorized = false
+      break
+    }
+    case 'verify-ca': {
+      config.ssl.checkServerIdentity = function () {}
+      break
+    }
+    case 'verify-full': {
       break
     }
   }

@@ -258,19 +258,24 @@ describe('parse', function () {
   it('configuration parameter sslmode=prefer', function () {
     var connectionString = 'pg:///?sslmode=prefer'
     var subject = parse(connectionString)
-    subject.ssl.should.eql({})
+    subject.ssl.should.eql({
+      rejectUnauthorized: false,
+    })
   })
 
   it('configuration parameter sslmode=require', function () {
     var connectionString = 'pg:///?sslmode=require'
     var subject = parse(connectionString)
-    subject.ssl.should.eql({})
+    subject.ssl.should.eql({
+      rejectUnauthorized: false,
+    })
   })
 
   it('configuration parameter sslmode=verify-ca', function () {
     var connectionString = 'pg:///?sslmode=verify-ca'
     var subject = parse(connectionString)
-    subject.ssl.should.eql({})
+    subject.ssl.should.have.property('checkServerIdentity').that.is.a('function')
+    expect(subject.ssl.checkServerIdentity()).be.undefined
   })
 
   it('configuration parameter sslmode=verify-full', function () {
@@ -284,6 +289,7 @@ describe('parse', function () {
     var subject = parse(connectionString)
     subject.ssl.should.eql({
       ca: 'example ca\n',
+      rejectUnauthorized: false,
     })
   })
 
