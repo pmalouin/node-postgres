@@ -69,8 +69,8 @@ Query parameters follow a `?` character, including the following special query p
  * `sslmode=<sslmode>`
    * `sslmode=disable` - sets `ssl` to false
    * `sslmode=no-verify`, `sslmode=prefer`, `sslmode=require`, - sets `ssl` to `{ rejectUnauthorized: false }`
-   * `sslmode=verify-ca` - sets `ssl` to `{ checkServerIdentity: no-op}` (validate CA, but not server identity)
-   * `sslmode=verify-full` - sets `ssl` to `{}` (validate CA and server identity)
+   * `sslmode=verify-ca` - sets `ssl` to `{ checkServerIdentity: no-op}` (validate CA, but not server host name)
+   * `sslmode=verify-full` - sets `ssl` to `{}` (validate CA and server host name)
  * `sslcert=<filename>` - reads data from the given file and includes the result as `ssl.cert`
  * `sslkey=<filename>` - reads data from the given file and includes the result as `ssl.key`
  * `sslrootcert=<filename>` - reads data from the given file and includes the result as `ssl.ca`
